@@ -6,6 +6,7 @@
 <t:partial>
 <h3>Welcome ${userName}</h3>
 	<a href="/pets/new">Add a pet</a>
+	<a href="/dashboard">All Pets</a>
 	 <form method="get" action="/dashboard/pet">
 	 	<div class="form-group">
 	 	<label for="petName">Choose Pet</label>

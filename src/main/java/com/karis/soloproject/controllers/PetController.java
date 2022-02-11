@@ -106,7 +106,7 @@ public class PetController {
 			model.addAttribute("now", now());
 			model.addAttribute("states",State.States);
 			model.addAttribute("petId", id);
-			return "newMissingPet.jsp";
+			model.addAttribute("pet",petService.findPet(id));			return "newMissingPet.jsp";
 		}else {
 			return "redirect:/login";
 		}

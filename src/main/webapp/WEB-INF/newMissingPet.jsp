@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
-<h4>Add information about your missing pet: </h4>
+<h4>Add information about ${pet.petName}: </h4>
 	<form:form action="/missing/create" method="post" modelAttribute="newMissingPet">
 	    <div class="form-group mb-2">
 	        <form:label path="lastseen">Last Seen:</form:label>

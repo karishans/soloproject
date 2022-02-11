@@ -15,7 +15,10 @@
 	      <div class="form-group mb-2">
 	        <form:label path="species">Species:</form:label>
 	        <form:errors class="text-danger" path="species"/>
-	        <form:input class="form-control" path="species"/>
+	         <form:select class="form-control" path="species">
+	        	<option value="dog">dog</option>
+	        	<option value="cat">cat</option>
+	        </form:select>
 	    </div>
 	        <div class="form-group mb-2">
 	        <form:label path="breed">Breed:</form:label>
@@ -25,7 +28,10 @@
 	     <div class="form-group mb-2">
 	        <form:label path="gender">Gender:</form:label>
 	        <form:errors class="text-danger" path="gender"/>
-	        <form:input class="form-control" path="gender"/>
+	        <form:select class="form-control" path="gender">
+	        	<option value="male">male</option>
+	        	<option value="female">female</option>
+	        </form:select>
 	    </div>
 	     <div class="form-group mb-2">
 	        <form:label path="weight">Weight:</form:label>
@@ -50,7 +56,11 @@
 	    <div class="form-group mb-2">
 	        <form:label path="neutered">Spayed/Neutered:</form:label>
 	        <form:errors class="text-danger" path="neutered"/>
-	        <form:input class="form-control" path="neutered"/>
+	         <form:select class="form-control" path="neutered">
+	        	<option value="yes">yes</option>
+	        	<option value="no">no</option>
+	        	<option value=unknown>unknown</option>
+	        </form:select>
 	    </div>
 	     <div class="form-group mb-2">
 	        <form:label path="microchip">Microchip:</form:label>
