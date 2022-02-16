@@ -17,9 +17,11 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 @Entity
@@ -49,7 +51,9 @@ public class User {
 	@NotEmpty(message="must include state")
 	private String state;
 	
-	@Size(min=10, max=12, message="Phone number should be 10 digits")
+//	@Size(min=10, max=12, message="Phone number should be 10 digits")
+//	@Pattern(regexp="^\\(?([0-9]{3})\\\\)?[-.\\\\s]?([0-9]{3})[-.\\\\s]?([0-9]{4})$", message="must be phone number format")
+	@Pattern(regexp="^[a-zA-Z0-9]{10}",message="length must be 10")  
 	private String phone;
 	
 	@NotBlank
@@ -73,6 +77,9 @@ public class User {
 	
 	@OneToMany(mappedBy="parent", fetch=FetchType.LAZY)
 	private List<MissingPet> petsMissing;
+	
+	@OneToMany(mappedBy="author", fetch=FetchType.LAZY)
+	private List<Message> messages;
 	
 	public User() {
 		
@@ -232,6 +239,30 @@ public class User {
 
 	public void setPetsOwned(List<Pet> petsOwned) {
 		this.petsOwned = petsOwned;
+	}
+
+	
+
+	public List<MissingPet> getPetsMissing() {
+		return petsMissing;
+	}
+
+
+
+	public void setPetsMissing(List<MissingPet> petsMissing) {
+		this.petsMissing = petsMissing;
+	}
+
+
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 

@@ -18,7 +18,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -47,6 +46,8 @@ public class Pet {
 	
 	@NotEmpty
 	private String gender;
+	
+	private String petUrl;
 	
 	@NotNull
 	private int weight;
@@ -87,6 +88,9 @@ public class Pet {
 	
 	@OneToOne(mappedBy="pet", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private MissingPet missingpet;
+	
+	@OneToMany(mappedBy="pet", cascade=CascadeType.REMOVE, fetch=FetchType.LAZY)
+	private List<Message> messages;
 	
 	public String getBirthdayFormatted() {
 		SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyy");
@@ -137,6 +141,32 @@ public class Pet {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	
+	public String getPetUrl() {
+		return petUrl;
+	}
+
+	public void setPetUrl(String petUrl) {
+		this.petUrl = petUrl;
+	}
+
+	public MissingPet getMissingpet() {
+		return missingpet;
+	}
+
+	public void setMissingpet(MissingPet missingpet) {
+		this.missingpet = missingpet;
+	}
+	
+	
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 	public int getWeight() {

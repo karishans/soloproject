@@ -20,6 +20,7 @@
 		 </form>
 	
 	<h4><c:out value="${pet.petName}'s Profile" /></h4>
+	<img src="${pet.petUrl}" alt="pet picture" style="width: 180px" class="img-thumbnail" >
 	<ul>
 					
 					<li><c:out value="${pet.species}" /></li>
@@ -29,6 +30,21 @@
 					<li><c:out value="Born: ${pet.getBirthdayFormatted()}" /></li>
 					<li><c:out value="Neutered: ${pet.neutered}" /></li>
 				</ul>  
+		<c:if test="${pet.missingpet == null}">
 				<a href="/missing/create/${pet.id}" class="btn btn-danger">Report Missing</a>
+		</c:if>
+		<c:if test="${pet.missingpet != null}">
+				<a href="/missing/edit/${pet.missingpet.id}" class="btn btn-danger">Edit Missing Details</a>
+		</c:if>
+					<!-- Check if event belongs to user -->
+	<c:if test="${pet.owner.id==userId}">
+		
+			<a href="/pets/delete/${pet.id}" class="btn btn-danger" onclick="data-confirm('Are you sure you want to delete this item')"> Delete</a>
+			
+			<a href="/pets/edit/${pet.id}" class="btn btn-primary">Edit</a>
+	</c:if>
+		<a href="/pets/${pet.id}" class="btn btn-primary">Pet Public Profile</a>
+		
+		 <script src="<c:url value="/resources/js/script.js"/>"></script>
 
 </t:partial>

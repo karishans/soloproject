@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.karis.soloproject.models.Message;
 import com.karis.soloproject.models.MissingPet;
 import com.karis.soloproject.models.Pet;
+import com.karis.soloproject.models.User;
+import com.karis.soloproject.repositories.MessageRepository;
 import com.karis.soloproject.repositories.MissingPetRepository;
 import com.karis.soloproject.repositories.PetRepository;
 
@@ -18,6 +21,9 @@ public class PetService {
 	
 	@Autowired
 	private MissingPetRepository missingRepository; 
+	
+	@Autowired
+	private MessageRepository messageRepository;
 	
 	//List All Pets
 	public List<Pet> allPets(){
@@ -79,5 +85,12 @@ public class PetService {
 	//Update Missing Pet
 	public MissingPet updateMissingPet(MissingPet missingPet) {
 		return missingRepository.save(missingPet);
+	}
+	
+	//*************** Message *******************
+	
+	//comment message on Pet
+	public void comment(User user, Pet pet, String message) {
+		messageRepository.save(new Message(message,user,pet));
 	}
 }

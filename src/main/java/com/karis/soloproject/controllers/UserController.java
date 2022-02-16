@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -55,6 +56,22 @@ public class UserController {
 			return "redirect:/dashboard";
 		}
 	}
+	
+	//Edit User Page
+	@GetMapping("/user/edit")
+	public String editUser(HttpSession session, @ModelAttribute("editedUser") User user, Model model) {
+		Long userId = (Long)session.getAttribute("userId");
+		User oldUser = userService.findById(userId);
+		if(userId == null) {
+			return "redirect:/login";
+		}
+		model.addAttribute("oldUser", oldUser);
+		model.addAttribute("states", State.States);
+		return "editUser.jsp";
+	}
+	
+	//Update User Information
+	
 	
 	//Login page
 	@GetMapping("/login")

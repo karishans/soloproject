@@ -19,11 +19,20 @@
         	<input class="btn btn-primary mt-2 mb-2" type="submit" value="Search"/>
     	</form>   
 	<c:forEach items="${missingPets}" var="missingpet">
+					<img src="${missingpet.pet.petUrl}" alt="pet picture" style="width: 180px" class="img-thumbnail" >
 				<ul>
 					<li>Pet Name: <c:out value="${missingpet.pet.petName}" /></li>
 					<li>Last Seen: <c:out value="${missingpet.getDateFormatted()}" /></li>
 					<li>Where: <c:out value="${missingpet.city}, ${missingpet.state} " /></li>
 					<li>Contact Information: <c:out value="${missingpet.phone}" /></li>
 				</ul>
+			<c:if test="${missingpet.parent.id==userId}">
+		
+			<a href="/missing/delete/${missingpet.id}" class="btn btn-danger">Delete from Missing Pets</a>
+			
+			<a href="/missing/edit/${missingpet.id}" class="btn btn-primary">Edit</a>
+		</c:if>
+			<h5>Go to Pet's Profile to make a comment</h5>
+			<a href="/pets/${missingpet.pet.id}" class="btn btn-primary">Pet Public Profile</a>
 		</c:forEach>
 </t:partial>

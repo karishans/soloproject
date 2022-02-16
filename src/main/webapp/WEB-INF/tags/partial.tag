@@ -18,8 +18,9 @@
 		<c:out value="${userName}"/>
 	</h3>
 	<a href="/">Home</a>
-	
-	<a href="/login">Login</a>
+	<c:if test="${userName == null}">
+		<a href="/login">Login</a>
+	</c:if>
 	<a href="/missing/pets">Missing Pets</a>
 	<c:if test="${userId!=null}">
 		<a href="/dashboard">Your Dashboard</a>
@@ -32,5 +33,7 @@
 	<a class="btn btn-secondary" href="/logout" role="button">Logout</a>
 	
 </div>
+ <script src="<c:url value="/resources/js/script.js"/>"></script>
 </body>
+
 </html>
