@@ -57,8 +57,8 @@
 		        <form:label path="phone">Phone Number:</form:label>
 		        <form:errors class="text-danger" path="phone"/>
 		        <form:input class="form-control" path="phone" value="${oldUser.phone}"/>
-		    </div>
-		    
+		        
+	       <%--  <form:input type="hidden" path="password"/> --%>
 	        <input class="btn btn-primary" type="submit" value="Update"/>
 	        
 	    </form:form>

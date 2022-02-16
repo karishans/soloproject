@@ -166,7 +166,26 @@ public class PetController {
 	
 	//Edit Pet Profile
 	@PostMapping("/pets/update/{petId}")
-	public String updatePet(@Valid @ModelAttribute("editedPet") Pet pet, BindingResult result, Model model, @PathVariable("petId") Long petId) {
+	public String updatePet(@Valid @ModelAttribute("editedPet") Pet pet, BindingResult result,@RequestParam("picture") MultipartFile file, Model model, @PathVariable("petId") Long petId) {
+		if(file.isEmpty()) {
+			Pet originalpet = petService.findPet(petId);
+			pet.setPetUrl(originalpet.getPetUrl());
+			System.err.println("no file");
+			}else {
+				System.out.println(file.getOriginalFilename());
+				try {
+					byte[] bytes = file.getBytes();
+//					Path path=Paths.get(IMAGE_FOLDER +file.getOriginalFilename());
+					Path uploadPath = Paths.get(IMAGE_FOLDER);
+					Path filePath = uploadPath.resolve(StringUtils.cleanPath(file.getOriginalFilename()));
+					Files.copy(file.getInputStream(),filePath, StandardCopyOption.REPLACE_EXISTING);
+					FileOutputStream output = new FileOutputStream(IMAGE_FOLDER+file.getOriginalFilename());
+					output.write(file.getBytes());
+					pet.setPetUrl("/imgs/" +file.getOriginalFilename());	
+				}catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		if(result.hasErrors()) {
 			model.addAttribute("oldPet",petService.findPet(petId));
 			return "editPet.jsp";
@@ -175,6 +194,18 @@ public class PetController {
 			return "redirect:/dashboard";
 		}
 	}
+	
+//	//Edit Pet Profile
+//	@PostMapping("/pets/update/{petId}")
+//	public String updatePet(@Valid @ModelAttribute("editedPet") Pet pet, BindingResult result, Model model, @PathVariable("petId") Long petId) {
+//		if(result.hasErrors()) {
+//			model.addAttribute("oldPet",petService.findPet(petId));
+//			return "editPet.jsp";
+//		}else {
+//			petService.updatePet(pet);
+//			return "redirect:/dashboard";
+//		}
+//	}
 	
 	//Delete pet profile
 	@GetMapping("/pets/delete/{petId}")

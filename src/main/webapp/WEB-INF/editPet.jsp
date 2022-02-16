@@ -6,7 +6,7 @@
 <t:partial>
 <h3>Welcome ${userName}</h3>
 <h4>Edit ${oldPet.petName}'s profile: </h4>
-	<form:form action="/pets/update/${oldPet.id}" method="post" modelAttribute="editedPet">
+	<form:form action="/pets/update/${oldPet.id}" method="post" modelAttribute="editedPet"  enctype="multipart/form-data">
 	       <!-- Hidden Input for petId -->
 	      <form:input type="hidden" value="${oldPet.id}" path="id"/>
 	    <div class="form-group">
@@ -35,11 +35,11 @@
 	        	<option value="female">female</option>
 	        </form:select>
 	    </div>
-	    <div class="form-group">
+	  <div class="form-group">
 	    <br />
 	    	<form:label path="petUrl"> Pet Image</form:label>
-	    		<input type="file" name="pic" id="fileToUpload" value="${oldPet.petUrl}">
-	    </div>
+	    		<input type="file" name="picture" id="fileToUpload">
+	    </div> 
 	     <div class="form-group mb-2">
 	        <form:label path="weight">Weight:</form:label>
 	        <form:errors class="text-danger" path="weight"/>

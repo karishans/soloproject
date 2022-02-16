@@ -33,6 +33,11 @@ public class UserService {
 		return userRepository.findById(id).orElse(null);
 	}
 	
+	//update User
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
+	
 	//authenticate user
 	public boolean authenticateUser(String email, String password ) {
 		//find the user by email - check if user exists
