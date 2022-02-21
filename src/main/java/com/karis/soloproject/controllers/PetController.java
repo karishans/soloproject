@@ -166,7 +166,7 @@ public class PetController {
 	
 	//Edit Pet Profile
 	@PostMapping("/pets/update/{petId}")
-	public String updatePet(@Valid @ModelAttribute("editedPet") Pet pet, BindingResult result,@RequestParam("picture") MultipartFile file, Model model, @PathVariable("petId") Long petId) {
+	public String updatePet(@Valid @ModelAttribute("editedPet") Pet pet, BindingResult result,@RequestParam("picture") MultipartFile file, Model model, @PathVariable("petId") Long petId, RedirectAttributes redirectAttributes) {
 		if(file.isEmpty()) {
 			Pet originalpet = petService.findPet(petId);
 			pet.setPetUrl(originalpet.getPetUrl());
@@ -191,6 +191,7 @@ public class PetController {
 			return "editPet.jsp";
 		}else {
 			petService.updatePet(pet);
+			redirectAttributes.addFlashAttribute("message", "Pet Profile Updated!");
 			return "redirect:/dashboard";
 		}
 	}
@@ -209,12 +210,13 @@ public class PetController {
 	
 	//Delete pet profile
 	@GetMapping("/pets/delete/{petId}")
-	public String deletePet(@PathVariable("petId") long petId, HttpSession session) {
+	public String deletePet(@PathVariable("petId") long petId, RedirectAttributes redirs, HttpSession session) {
 		Pet pet = petService.findPet(petId);
 		Long userId = pet.getOwner().getId();
 		Long sessionId = (Long)session.getAttribute("userId");
 		if(userId.equals(sessionId)) {
 			petService.deletePet(petId);
+			redirs.addFlashAttribute("deletemessage", "Pet Profile Deleted!");
 			return "redirect:/dashboard";
 		}else {
 			return "redirect:/login";

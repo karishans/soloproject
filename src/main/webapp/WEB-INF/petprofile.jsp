@@ -4,7 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container">
 	<h4 class="text-info"><c:out value="${pet.petName}s Profile" /></h4>
+	<img src="${pet.petUrl}" alt="pet picture" style="width: 180px" class="img-thumbnail" >
 	<p>Breed/Mix: <c:out value="${pet.breed}"/>
 	<p>Birthday: <c:out value="${pet.getBirthdayFormatted()}" /></p>
 	<p>Owner Name: <c:out value="${pet.owner.firstName} ${pet.owner.lastName}"/></p>
@@ -38,5 +40,5 @@
 		 	</div>
 		 </form>	
 	</c:if>
-
+</div>
 </t:partial>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container">
 <h4>Add information about ${pet.petName}: </h4>
 	<form:form action="/missing/create" method="post" modelAttribute="newMissingPet">
 	    <div class="form-group mb-2">
@@ -20,6 +21,7 @@
 		      <form:label path="state">State:</form:label>
 		      <form:errors class="text-danger" path="state"/>
 		      <form:select path="state" class="form-control">
+		      <option value=""  selected disabled hidden>-----State-----</option>
 		      <c:forEach items="${states}" var="state">
 		        <option value="${state}">${state}</option>
 		      </c:forEach>
@@ -38,5 +40,5 @@
 	   		<form:input type="hidden" value="${petId}" path="pet"/>
 	    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 	</form:form> 
-	
+	</div>
 </t:partial>

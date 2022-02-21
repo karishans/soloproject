@@ -6,34 +6,60 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="/css/main.css" rel="stylesheet">   
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
 	rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand m-2" href="/">
+    	<img src="/imgs/logo.jpg" width = "40" height = "30" class="d-inline-block align-top" alt="">
+  Pet Pack</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/missing/pets">Missing Pets</a>
+      </li>
+       <li class="nav-item">
+       <c:if test="${userId!=null}">
+        <a class="nav-link" href="/dashboard">Your Dashboard</a>
+        </c:if>
+        </li>
+        <li class="nav-item">
+      <c:if test="${userName == null}">
+        <a class="btn btn-secondary m-1" href="/login">Login</a>
+      </c:if>
+      </li>
+   		<li class="nav-item ">
+      <c:if test="${userName == null}">
+        <a class="btn btn-secondary m-1" href="register">Register</a>
+      </c:if>
+      </li>
+        <li class="nav-item">
+       <c:if test="${userId!=null}">
+       <a class="btn btn-secondary" href="/logout" role="button">Logout</a>
+        </c:if>
+      </li>
+    </ul>
+    </div>
+</nav>
 <body>
-<div class="container mt-3">
-	<h3>
-		Welcome
-		<c:out value="${userName}"/>
-	</h3>
-	<a href="/">Home</a>
-	<c:if test="${userName == null}">
-		<a href="/login">Login</a>
-	</c:if>
-	<a href="/missing/pets">Missing Pets</a>
-	<c:if test="${userId!=null}">
-		<a href="/dashboard">Your Dashboard</a>
-	</c:if>
-	<hr>
+<!-- <div class="container mt-3">
+	 -->
+	
 	<jsp:doBody/>
 	
 	
-	<hr>
-	<a class="btn btn-secondary" href="/logout" role="button">Logout</a>
 	
-</div>
- <script src="<c:url value="/resources/js/script.js"/>"></script>
-</body>
+
+ <script type="text/javascript" src="/js/script.js"></script>
+</body> 
 
 </html>

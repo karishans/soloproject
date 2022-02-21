@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container">
 <h3>Welcome ${userName}</h3>
 <h4>Add a pet: </h4>
 	<form:form action="/pets/create" method="post" modelAttribute="newPet" enctype="multipart/form-data">
@@ -39,7 +40,7 @@
 	    		<input type="file" name="pic" id="fileToUpload">
 	    </div>
 	     <div class="form-group mb-2">
-	        <form:label path="weight">Weight:</form:label>
+	        <form:label path="weight">Weight (lbs):</form:label>
 	        <form:errors class="text-danger" path="weight"/>
 	        <form:input class="form-control" type="number" path="weight"/>
 	    </div>
@@ -88,5 +89,5 @@
 	   
 	    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 	</form:form> 
-	
+	</div>
 </t:partial>

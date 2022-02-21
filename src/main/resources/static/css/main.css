@@ -1,0 +1,63 @@
+html, body {
+  margin:0px;
+ 
+}
+/* Set a background image by replacing the URL below */
+
+
+
+.background {
+	
+	height: 100vh;
+	width: 100vw;
+	position:relative;
+	margin:0px;
+	background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/imgs/background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.dashboard{
+	height: 100vh;
+	width: 100vw;
+	position:relative;
+	margin:0px;
+	background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/imgs/dashboard.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.profile{
+	height: 100vh;
+	width: 100vw;
+	position:relative;
+	margin:0px;
+	background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/imgs/profile.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+
+.custom-class {
+  display: flex;
+}
+
+.imagefade{
+	height: 100vh;
+	width: 100vw;
+	position:relative;
+	
+	background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/imgs/goldenbackground.jpg') no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+	
+}
+

@@ -1,7 +1,15 @@
+
+
 function deleteProfile(){
 	alert("You are deleting...");
 }
 
+function ShowHideDiv(){
+		var chkYes = document.getElementbyId("chkYes");
+		var dvImage = document.getElementbyId("dvPicture");
+		dvImage.style.display = chkYes.checked ? "block":"none";
+	}
+	
 $(document).ready(function() {
 	$('a[data-confirm]').click(function(ev) {
 		var href = $(this).attr('href');

@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container pt-3">
 <h3>Welcome ${userName}</h3>
 <h4>Edit ${oldPet.petName}'s profile: </h4>
 	<form:form action="/pets/update/${oldPet.id}" method="post" modelAttribute="editedPet"  enctype="multipart/form-data">
@@ -18,8 +19,16 @@
 	        <form:label path="species">Species:</form:label>
 	        <form:errors class="text-danger" path="species"/>
 	         <form:select class="form-control" path="species">
-	        	<option value="dog">dog</option>
+	         	<c:choose>
+	        	<c:when test="${oldPet.species == 'dog'}">
+	        	<option selected value="dog">dog</option>
 	        	<option value="cat">cat</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.species == 'cat'}">
+	        	<option value="dog">dog</option>
+	        	<option selected value="cat">cat</option>
+	        	</c:when>
+	        	</c:choose>
 	        </form:select>
 	    </div>
 	        <div class="form-group mb-2">
@@ -31,17 +40,34 @@
 	        <form:label path="gender">Gender:</form:label>
 	        <form:errors class="text-danger" path="gender"/>
 	        <form:select class="form-control" path="gender">
-	        	<option value="male">male</option>
+	            	<c:choose>
+	        	<c:when test="${oldPet.gender == 'male'}">
+	        	<option selected value="male">male</option>
 	        	<option value="female">female</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.gender == 'female'}">
+	        	<option value="male">male</option>
+	        	<option selected value="female">female</option>
+	        	</c:when>
+	        	</c:choose>
 	        </form:select>
 	    </div>
-	  <div class="form-group">
+	 <!--    <label for="chkYes">
+	    	<input type="radio" id ="chkYes" name="chkImage" onclick="ShowHideDiv()"/>
+	    	Yes
+	    </label>
+	    <label for="chkNo">
+	    	<input type="radio" id ="chkNo" name="chkImage" onclick="ShowHideDiv()"/>
+	    	No
+	    </label>
+	    <hr/> -->
+	  <div class="form-group" id="dvPicture">
 	    <br />
 	    	<form:label path="petUrl"> Pet Image</form:label>
 	    		<input type="file" name="picture" id="fileToUpload">
 	    </div> 
 	     <div class="form-group mb-2">
-	        <form:label path="weight">Weight:</form:label>
+	        <form:label path="weight">Weight (lbs):</form:label>
 	        <form:errors class="text-danger" path="weight"/>
 	        <form:input class="form-control" type="number" path="weight" value="${oldPet.weight}"/>
 	    </div>
@@ -64,9 +90,23 @@
 	        <form:label path="neutered">Spayed/Neutered:</form:label>
 	        <form:errors class="text-danger" path="neutered"/>
 	         <form:select class="form-control" path="neutered">
+	        	<c:choose>
+	        	<c:when test="${oldPet.neutered == 'yes'}">
+	        	<option selected value="yes">yes</option>
+	        	<option value="no">no</option>
+	        	<option value="unknown">unknown</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.neutered == 'no'}">
+	        	<option value="yes">yes</option>
+	        	<option selected value="no">no</option>
+	        	<option value="unknown">unknown</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.neutered == 'unknown'}">
 	        	<option value="yes">yes</option>
 	        	<option value="no">no</option>
-	        	<option value=unknown>unknown</option>
+	        	<option selected value=unknown>unknown</option>
+	        	</c:when>
+	        	</c:choose>
 	        </form:select>
 	    </div>
 	     <div class="form-group mb-2">
@@ -90,5 +130,5 @@
 	   
 	    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 	</form:form> 
-	
+</div>
 </t:partial>

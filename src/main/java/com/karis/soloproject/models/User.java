@@ -51,9 +51,7 @@ public class User {
 	@NotEmpty(message="must include state")
 	private String state;
 	
-//	@Size(min=10, max=12, message="Phone number should be 10 digits")
-//	@Pattern(regexp="^\\(?([0-9]{3})\\\\)?[-.\\\\s]?([0-9]{3})[-.\\\\s]?([0-9]{4})$", message="must be phone number format")
-	@Pattern(regexp="^[a-zA-Z0-9]{10}",message="length must be 10")  
+	@Size(min=10, max=12, message="Phone number should be 10 digits") 
 	private String phone;
 	
 	@NotBlank

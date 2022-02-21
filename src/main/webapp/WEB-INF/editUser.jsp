@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container">
 	<div class="container mt-3">
     <div class="row">
 	    <div class="col">
@@ -65,4 +66,5 @@
 	    </div>
 	 </div>
 	 </div>
+</div>
 </t:partial>

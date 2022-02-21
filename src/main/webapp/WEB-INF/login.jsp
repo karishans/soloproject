@@ -4,9 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
-	<div class="container mt-3">
-    <div class="row">  
-	    <div class="col">
+	<div>
+    <div class="row custom-class">  
+	    <div class="col-md-6 p-5">
     		<h1>Login</h1>
     		<form method="post" action="/loginUser">
     			<p class="text-danger">
@@ -14,15 +14,22 @@
     			</p>
         	<div class="form-group">
            	 	<label type="email" for="email">Email</label>
-            	<input class="form-control"  type="text" id="email" name="email"/>
+            	<input class="form-control"  placeholder="Your e-mail" type="text" id="email" name="email"/>
         	</div>
        		 <div class="form-group mb-2">
            	 <label for="password">Password</label>
-            	<input class="form-control"  type="password" id="password" name="password"/>
+            	<input class="form-control" placeholder="password" type="password" id="password" name="password"/>
         	</div>
-        	<input class="btn btn-primary" type="submit" value="Login!"/>
+        	<input class="btn btn-primary mt-2 mb-2" type="submit" value="Login!"/>
     		</form>   
-    		</div> 
+    	</div> 
+  		
+ 
+    
+    	<div class="col-md-6 imagefade">
+    		<h1 class="text-center mt-5">Pet Pack</h1>
+    			<!-- <img  src="/imgs/goldenbackground.jpg" alt="pet picture" width="700px"> -->
     	</div>
-    </div>
+    	</div>
+ 	</div>
 </t:partial>

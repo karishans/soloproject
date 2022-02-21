@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
+<div class="container">
 <h4>Update missing information about ${pet.petName}: </h4>
 	<form:form action="/missing/update/${oldmissingPet.id}" method="post" modelAttribute="editedPet">
 	     <!-- Hidden Input for missingPetID -->
@@ -47,5 +48,5 @@
 	   		<form:input type="hidden" value="${petId}" path="pet"/>
 	    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 	</form:form> 
-	
+</div>
 </t:partial>

@@ -4,7 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
-<h3>Technological Pet Identification and Online Profile for your pet:</h3>
-<a href="/register" class="btn btn-primary mt-2">Create a Profile!</a>
-	
+<div class="background">
+	<div class="container pt-3">
+	<h3 class="text-white">Missing Pet Identification and Online Profile for your pet:</h3>
+	<a href="/register" class="btn btn-primary mt-2">Create a Profile!</a>
+	</div>
+</div>
 </t:partial>
