@@ -28,15 +28,30 @@
 		</div>
 		<div>
 		<div class="row d-flex ">
-		<h5 class="mt-3">Comments:</h5>
+		<h5 class="mt-3 mb-3"><strong>Comments:</strong></h5>
 		<div id ="clear" class="col-md-8 mb-3">
 			
 		<c:forEach items="${pet.messages}" var="message">	
 			<c:if test="${message.author.id == userId}">
-				<p class="p-2"><c:out value="You said: ${message.message}" /></p>
+				<div class="row d-flex align-items-center">
+					<div class="row">
+					<p class="mt-2"><strong><c:out value="You said: " /></strong></p>
+					</div>
+					<div class="col-md-7">
+						<p class="mt-2"><c:out value="${message.message}"/></p> 
+					</div>
+					<div class="col-md-2">
+						<a href="/message/delete/${message.id}/${pet.id}" class="text-danger" onclick="return confirm('Are you sure you want to delete this message?');">Delete</a>
+			
+					</div>
+				
+				</div>
+				<hr/>
 			</c:if>
 			<c:if test="${message.author.id != userId}">
-				<p><c:out value="${message.author.firstName} said: ${message.message}" /></p>	
+				<p class="mt-2"><strong><c:out value="${message.author.firstName} said: "/></strong></p>
+				<p class="mt-2"><c:out value="${message.message}"/>	
+					<hr/>
 			</c:if>			
 		</c:forEach>
 		
@@ -49,7 +64,7 @@
 	<c:if test="${userId != null}">
 	 <form action="/pets/${pet.id}/comment" method="post">
 		 	<div class="form-group>">
-		 		<label class="mb-3" for="message"> Add Comment: </label>
+		 		<label class="mb-3" for="message"> <strong>Add Comment: </strong></label>
 		 		<span class=text-danger> ${error}</span>
 		 		<textarea name="message" id="message" class="form-control"></textarea>
 		 		<button class="btn btn-primary mt-2 mb-3">Submit</button>

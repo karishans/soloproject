@@ -93,4 +93,11 @@ public class PetService {
 	public void comment(User user, Pet pet, String message) {
 		messageRepository.save(new Message(message,user,pet));
 	}
+	
+	public Message getMessage(Long id) {
+		return messageRepository.findById(id).orElse(null);
+	}
+	public void deleteMessage(Long id) {
+		messageRepository.deleteById(id);
+	}
 }

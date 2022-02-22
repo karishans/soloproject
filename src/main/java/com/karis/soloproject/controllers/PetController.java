@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.karis.soloproject.models.State;
+import com.karis.soloproject.models.Message;
 import com.karis.soloproject.models.MissingPet;
 import com.karis.soloproject.models.Pet;
 import com.karis.soloproject.models.User;
@@ -308,7 +309,7 @@ public class PetController {
 	}
 	//Delete MissingPet profile
 	@GetMapping("/missing/delete/{petId}")
-	public String deleteMissingPet(@PathVariable("petId") long petId, HttpSession session) {
+	public String deleteMissingPet(@PathVariable("petId") Long petId, HttpSession session) {
 		MissingPet missingPet = petService.getMissingPet(petId);
 		Long userId = missingPet.getParent().getId();
 		Long sessionId = (Long)session.getAttribute("userId");
@@ -319,6 +320,21 @@ public class PetController {
 			return "redirect:/login";
 		}
 		
+	}
+	
+	//Delete Message 
+	@GetMapping("message/delete/{messageId}/{petId}")
+	public String deleteMessage(@PathVariable("messageId") Long messageId,@PathVariable("petId") Long petId, HttpSession session) {
+		Message message = petService.getMessage(messageId);
+		Long userId= message.getAuthor().getId();
+		Long sessionId = (Long)session.getAttribute("userId");
+	
+		if(userId.equals(sessionId)) {
+			petService.deleteMessage(messageId);
+			return "redirect:/pets/{petId}";
+		}else {
+			return "redirect:/login";
+		}
 	}
 }
 

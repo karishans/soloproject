@@ -16,6 +16,10 @@ html, body {
   margin-right: 10px !important;
 }
 
+.pad-5 {
+	padding-top: 180px !important;
+}
+
 select {
     padding:3px;
     margin: 0;
@@ -54,6 +58,11 @@ select {
     border-color: #CD5C5C !important;
      
 }
+
+a, a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 .background {
 	
 	height: 100vh;
@@ -68,7 +77,8 @@ select {
 }
 
 .dashboard{
-	
+		
+	height: 100%;
 	width: 100vw;
 	position:relative;
 	margin:0px;

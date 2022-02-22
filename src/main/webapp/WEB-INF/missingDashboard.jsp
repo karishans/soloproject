@@ -58,8 +58,8 @@
 		
 			
 			<div class="col-md-3">
-			<h5>If you think you have seen ${missingpet.pet.petName}, or want to make a comment. Go to ${missingpet.pet.petName}'s Profile</h5>
-			<a href="/pets/${missingpet.pet.id}" class="btn btn-primary"><c:out value="${missingpet.pet.petName}'s Public Profile"/></a>
+			<h5>If you think you have seen ${missingpet.pet.petName}, or want to make a comment. Login and go to ${missingpet.pet.petName}'s Profile</h5>
+			<a href="/pets/${missingpet.pet.id}" class="btn btn-primary"><c:out value="${missingpet.pet.petName}'s Profile"/></a>
 			</div>
 		</div>
 		</c:forEach>
