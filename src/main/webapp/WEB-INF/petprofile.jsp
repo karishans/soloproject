@@ -4,41 +4,60 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
-<div class="container">
-	<h4 class="text-info"><c:out value="${pet.petName}s Profile" /></h4>
-	<img src="${pet.petUrl}" alt="pet picture" style="width: 180px" class="img-thumbnail" >
-	<p>Breed/Mix: <c:out value="${pet.breed}"/>
-	<p>Birthday: <c:out value="${pet.getBirthdayFormatted()}" /></p>
-	<p>Owner Name: <c:out value="${pet.owner.firstName} ${pet.owner.lastName}"/></p>
-	<p>Owner Location: <c:out value="${pet.owner.city}, ${pet.owner.state}" /></p>
-	<p>Owner Contact: <c:out value="${pet.owner.phone}"/></p>
-	<p>Description: <c:out value="${pet.description}"/></p>
-		<c:if test="${pet.missingpet != null}">
-			<h5 class="text-danger">${pet.petName} Was Reported Missing in ${pet.missingpet.city}, ${pet.missingpet.state}</h5>
-		</c:if>
-		
-		
-	<h5>Comments</h5>
-		
+<div class="dogcat">
+<div class="container pt-4">
+	<div class="row border-2 border secondary rounded d-flex p-3 mt-3">
+		<div class="row">
+			<h4 class="mt-3 mb-3"><c:out value="${pet.petName}'s Profile" /></h4>
+		</div>
+		<hr/>
+		<div class="col-md-4 mb-3 mt-3">
+			<img src="${pet.petUrl}" alt="pet picture" style="width: 250px" class="img-thumbnail" >
+		</div>
+		<div id="info" class="col-md-5 border border-2 rounded p-3 mt-3">
+			<p>Breed/Mix: <c:out value="${pet.breed}"/>
+			<p>Birthday: <c:out value="${pet.getBirthdayFormatted()}" /></p>
+			<p>Owner Name: <c:out value="${pet.owner.firstName} ${pet.owner.lastName}"/></p>
+			<p>Owner Location: <c:out value="${pet.owner.city}, ${pet.owner.state}" /></p>
+			<p>Owner Contact: <c:out value="${pet.owner.phone}"/></p>
+			<p>Description: <c:out value="${pet.description}"/></p>
+			<c:if test="${pet.missingpet != null}">
+				<h5 class="text-danger">${pet.petName} Was Reported Missing in ${pet.missingpet.city}, ${pet.missingpet.state}</h5>
+			</c:if>
+		</div>
+		</div>
+		<div>
+		<div class="row d-flex ">
+		<h5 class="mt-3">Comments:</h5>
+		<div id ="clear" class="col-md-8 mb-3">
+			
 		<c:forEach items="${pet.messages}" var="message">	
 			<c:if test="${message.author.id == userId}">
-				<p><c:out value="You said: ${message.message}" /></p>
+				<p class="p-2"><c:out value="You said: ${message.message}" /></p>
 			</c:if>
 			<c:if test="${message.author.id != userId}">
 				<p><c:out value="${message.author.firstName} said: ${message.message}" /></p>	
 			</c:if>			
 		</c:forEach>
-	
+		
+			</div>
+		</div>
+		</div>
 	<!-- Check if user is logged in to make comment -->
+	<div class="row d-flex ">
+	<div class="col-md-6 mb-3">
 	<c:if test="${userId != null}">
 	 <form action="/pets/${pet.id}/comment" method="post">
-		 	<div class="form=group>">
-		 		<label for="message"> Add Comment: </label>
+		 	<div class="form-group>">
+		 		<label class="mb-3" for="message"> Add Comment: </label>
 		 		<span class=text-danger> ${error}</span>
 		 		<textarea name="message" id="message" class="form-control"></textarea>
-		 		<button class="btn btn-primary mt-2">Submit</button>
+		 		<button class="btn btn-primary mt-2 mb-3">Submit</button>
 		 	</div>
 		 </form>	
 	</c:if>
+	</div>
+	</div>
+</div>
 </div>
 </t:partial>

@@ -5,54 +5,21 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
 <div class="container pt-3">
-<h3>Welcome ${userName}</h3>
-<h4>Edit ${oldPet.petName}'s profile: </h4>
-	<form:form action="/pets/update/${oldPet.id}" method="post" modelAttribute="editedPet"  enctype="multipart/form-data">
+<div class=" d-flex justify-content-center mt-4">
+	<div class="row border border-secondary p-4 rounded mb-4">
+	    <div class="col">
+		<h3>Welcome ${userName}</h3>
+		<h4 class="mb-4">Edit ${oldPet.petName}'s profile: </h4>
+		<form:form action="/pets/update/${oldPet.id}" method="post" modelAttribute="editedPet"  enctype="multipart/form-data">
 	       <!-- Hidden Input for petId -->
 	      <form:input type="hidden" value="${oldPet.id}" path="id"/>
-	    <div class="form-group">
-	        <form:label path="petName">Pet Name:</form:label>
-	        <form:errors class="text-danger" path="petName"/>
-	        <form:input class="form-control" path="petName" value="${oldPet.petName}"/>
-	    </div>
-	      <div class="form-group mb-2">
-	        <form:label path="species">Species:</form:label>
-	        <form:errors class="text-danger" path="species"/>
-	         <form:select class="form-control" path="species">
-	         	<c:choose>
-	        	<c:when test="${oldPet.species == 'dog'}">
-	        	<option selected value="dog">dog</option>
-	        	<option value="cat">cat</option>
-	        	</c:when>
-	        	<c:when test="${oldPet.species == 'cat'}">
-	        	<option value="dog">dog</option>
-	        	<option selected value="cat">cat</option>
-	        	</c:when>
-	        	</c:choose>
-	        </form:select>
-	    </div>
-	        <div class="form-group mb-2">
-	        <form:label path="breed">Breed:</form:label>
-	        <form:errors class="text-danger" path="breed"/>
-	        <form:input class="form-control" path="breed" value="${oldPet.breed}"/>
-	    </div>
-	     <div class="form-group mb-2">
-	        <form:label path="gender">Gender:</form:label>
-	        <form:errors class="text-danger" path="gender"/>
-	        <form:select class="form-control" path="gender">
-	            	<c:choose>
-	        	<c:when test="${oldPet.gender == 'male'}">
-	        	<option selected value="male">male</option>
-	        	<option value="female">female</option>
-	        	</c:when>
-	        	<c:when test="${oldPet.gender == 'female'}">
-	        	<option value="male">male</option>
-	        	<option selected value="female">female</option>
-	        	</c:when>
-	        	</c:choose>
-	        </form:select>
-	    </div>
-	 <!--    <label for="chkYes">
+	      <div class="row mt-2">
+	      	<div class="form-group col-md-5">
+	       	 <form:label path="petName">Pet Name:</form:label>
+	        	<form:errors class="text-danger" path="petName"/>
+	        	<form:input class="form-control" path="petName" value="${oldPet.petName}"/>
+	   	 	</div>
+	   	 	 <!--    <label for="chkYes">
 	    	<input type="radio" id ="chkYes" name="chkImage" onclick="ShowHideDiv()"/>
 	    	Yes
 	    </label>
@@ -61,32 +28,78 @@
 	    	No
 	    </label>
 	    <hr/> -->
-	  <div class="form-group" id="dvPicture">
-	    <br />
-	    	<form:label path="petUrl"> Pet Image</form:label>
+	  		<div class="form-group col-md-4" id="dvPicture">
+	   			
+	    		<form:label path="petUrl">New Pet Image:</form:label>
 	    		<input type="file" name="picture" id="fileToUpload">
-	    </div> 
-	     <div class="form-group mb-2">
+	    	</div> 
+	   	 </div>
+	   	  <div class="row mt-2">
+	      <div class="form-group mb-2 col-md-4">
+	        <form:label path="species">Species:</form:label>
+	        <form:errors class="text-danger" path="species"/>
+	         <form:select class="form-control" path="species">
+	         	<c:choose>
+	        	<c:when test="${oldPet.species == 'Dog'}">
+	        	<option selected value="Dog">Dog</option>
+	        	<option value="Cat">Cat</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.species == 'Cat'}">
+	        	<option value="Dog">Dog</option>
+	        	<option selected value="Cat">Cat</option>
+	        	</c:when>
+	        	</c:choose>
+	        </form:select>
+	    </div>
+	        <div class="form-group mb-2 col-md-6">
+	        <form:label path="breed">Breed:</form:label>
+	        <form:errors class="text-danger" path="breed"/>
+	        <form:input class="form-control" path="breed" value="${oldPet.breed}"/>
+	    	</div>
+	    </div>
+	    <div class="row mt-2">
+	     <div class="form-group mb-2 col-md-3">
+	        <form:label path="gender">Gender:</form:label>
+	        <form:errors class="text-danger" path="gender"/>
+	        <form:select class="form-control" path="gender">
+	            	<c:choose>
+	        	<c:when test="${oldPet.gender == 'Male'}">
+	        	<option selected value="Male">Male</option>
+	        	<option value="Female">Female</option>
+	        	</c:when>
+	        	<c:when test="${oldPet.gender == 'Female'}">
+	        	<option value="male">Male</option>
+	        	<option selected value="Female">Female</option>
+	        	</c:when>
+	        	</c:choose>
+	        </form:select>
+	    </div>
+	
+	     <div class="form-group mb-2 col-md-3">
 	        <form:label path="weight">Weight (lbs):</form:label>
 	        <form:errors class="text-danger" path="weight"/>
 	        <form:input class="form-control" type="number" path="weight" value="${oldPet.weight}"/>
+	   	 </div>
 	    </div>
-	    <div class="form-group mb-2">
+	     <div class="row mt-2">
+	    <div class="form-group mb-2 col-md-4">
 	        <form:label path="birthday">Birthday:</form:label>
 	        <form:errors class="text-danger" path="birthday"/>
 	        <form:input class="form-control" type="date" value="${birthday}" path="birthday"/>
 	    </div>
-	      <div class="form-group mb-2">
+	      <div class="form-group mb-2 col-md-6">
 	        <form:label path="color">Color:</form:label>
 	        <form:errors class="text-danger" path="color"/>
 	        <form:input class="form-control" path="color" value="${oldPet.color}"/>
+	    	</div>
 	    </div>
-	     <div class="form-group mb-2">
+	     <div class="row mt-2">
+	     <div class="form-group mb-2 col-md-4">
 	        <form:label path="size">Size:</form:label>
 	        <form:errors class="text-danger" path="size"/>
 	        <form:input class="form-control" path="size" value="${oldPet.size}"/>
 	    </div>
-	    <div class="form-group mb-2">
+	    <div class="form-group mb-2 col-md-3">
 	        <form:label path="neutered">Spayed/Neutered:</form:label>
 	        <form:errors class="text-danger" path="neutered"/>
 	         <form:select class="form-control" path="neutered">
@@ -109,26 +122,35 @@
 	        	</c:choose>
 	        </form:select>
 	    </div>
-	     <div class="form-group mb-2">
+	    </div>
+	     <div class="row mt-2">
+	     	<div class="form-group mb-2 col-md-4">
 	        <form:label path="microchip">Microchip:</form:label>
 	        <form:errors class="text-danger" path="microchip"/>
 	        <form:input class="form-control" type="number" path="microchip" value="${oldPet.microchip}"/>
+	   	 </div>
 	    </div>
+	  
 	     <div class="form-group mb-2">
-	        <form:label path="description">Description:</form:label>
+	        <form:label path="description">Physical Description:</form:label>
 	        <form:errors class="text-danger" path="description"/>
 	        <form:input class="form-control" path="description" value="${oldPet.description}"/>
 	    </div>
+	   
+	
 	     <div class="form-group mb-2">
 	        <form:label path="behavior">Behavior:</form:label>
 	        <form:errors class="text-danger" path="behavior"/>
 	        <form:input class="form-control" path="behavior" value="${oldPet.behavior}"/>
 	    </div>
-	   
+	
 	      <!-- Hidden Input for userId -->
 	      <form:input type="hidden" value="${userId}" path="owner"/>
 	   
 	    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 	</form:form> 
+	</div>
+	</div>
+	</div>
 </div>
 </t:partial>

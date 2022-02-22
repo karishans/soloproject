@@ -5,8 +5,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:partial>
 <div class="profile">
-<div class="container pt-3">
-<h3>Welcome ${userName}</h3>
+<div class="container pt-4">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -36,47 +35,51 @@
   </div>
   </nav>
 	
-	<div class="container bcontent">
-	<h4 class="mt-3"><c:out value="${pet.petName}'s Profile" /></h4>
-	<hr/>
-	<div class="card mb-3" style="width:500px;">
-	<div class= "row no-gutters">
-	<div class="col-sm-5">
-		<img src="${pet.petUrl}" alt="pet picture" style="width: 180px" class="card-img m-3" >
-	</div>
-	<div class="col-sm-7">
-		<div class="card-body">
-			<h5 class=card-title><c:out value="About ${pet.petName}"/></h5>
-		<ul class = "card-text">
-					<li><c:out value="${pet.species}" /></li>
-					<li><c:out value="${pet.breed}" /></li>
-					<li><c:out value="${pet.gender}" /></li>
-					<li><c:out value="Weight: ${pet.weight} lbs"/></li>
-					<li><c:out value="Born: ${pet.getBirthdayFormatted()}" /></li>
-					<li><c:out value="Spayed/Neutered: ${pet.neutered}" /></li>
-				</ul>  
-			</div>
-			</div>
-			</div>
+
 		
+		<hr/>
+		<div class="row border-2 border secondary rounded d-flex p-3 mt-3">
+			<div class="row">
+				<h2 class="mt-3 mb-3"><c:out value="${pet.petName}'s Profile" /></h2>
 			</div>
+			<div class="col-md-4 mb-3">
+				<div>
+					<img src="${pet.petUrl}" alt="pet picture" style="width: 250px" class="img-thumbnail" >
+				</div>
+			</div>
+			<div id="info" class="col-md-5 border border-2 rounded p-3">
+					<h5><strong>About ${pet.petName}</strong></h5>
+					<h6><c:out value="${pet.species}" /></h6>
+					<h6><c:out value="${pet.breed}" /></h6>
+					<h6><c:out value="${pet.gender}" /></h6>
+					<h6><c:out value="Weight: ${pet.weight} lbs"/></h6>
+					<h6><c:out value="Born: ${pet.getBirthdayFormatted()}" /></h6>
+					<h6><c:out value="Spayed/Neutered: ${pet.neutered}" /></h6>
+					<h6><c:out value="Microchip: ${pet.microchip}" /></h6>
+			 		<div class="mt-3">
+			 		<c:if test="${pet.owner.id==userId}">
+			 			<a href="/pets/edit/${pet.id}" class="btn btn-primary mb-2">Edit Details</a>
+			 		</c:if>
+					</div>
+				</div>
 			
+		<div class="col-md-3 p-5">	
 		<c:if test="${pet.missingpet == null}">
-				<a href="/missing/create/${pet.id}" class="btn btn-danger">Report Missing</a>
+				<a href="/missing/create/${pet.id}" class="btn btn-danger mb-2">Report Missing</a>
 		</c:if>
 		<c:if test="${pet.missingpet != null}">
-				<a href="/missing/edit/${pet.missingpet.id}" class="btn btn-danger">Edit Missing Pet Details</a>
+				<a href="/missing/edit/${pet.missingpet.id}" class="btn btn-danger mb-2">Edit Missing Pet Details</a>
 		</c:if>
-					<!-- Check if event belongs to user -->
-	<c:if test="${pet.owner.id==userId}">
+					<!-- Check if pet belongs to user -->
+		<c:if test="${pet.owner.id==userId}">
 		
-			<a href="/pets/delete/${pet.id}" class="btn btn-danger" onclick="data-confirm('Are you sure you want to delete this item')"> Delete Pet Profile</a>
+			<a href="/pets/delete/${pet.id}" class="btn btn-danger mb-2" onclick="return confirm('Are you sure you want to delete this item?');"> Delete Pet Profile</a>
 			
-			<a href="/pets/edit/${pet.id}" class="btn btn-primary">Edit</a>
-	</c:if>
-		<a href="/pets/${pet.id}" class="btn btn-primary">Pet Public Profile</a>
-		
+
+		</c:if>
+		<a href="/pets/${pet.id}" class="btn btn-primary mb-2">Pet Public Profile</a>
 		</div>
-</div>
+		</div>
+	</div>
 </div>
 </t:partial>

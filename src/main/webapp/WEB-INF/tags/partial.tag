@@ -10,12 +10,12 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
 	rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Pet Locater</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
   <a class="navbar-brand m-2" href="/">
     	<img src="/imgs/logo.jpg" width = "40" height = "30" class="d-inline-block align-top" alt="">
-  Pet Pack</a>
+  Pet Locater</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +25,7 @@
         <a class="nav-link" href="/">Home </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/missing/pets">Missing Pets</a>
+        <a class="nav-link mr-2" href="/missing/pets">Missing Pets</a>
       </li>
        <li class="nav-item">
        <c:if test="${userId!=null}">
@@ -34,12 +34,12 @@
         </li>
         <li class="nav-item">
       <c:if test="${userName == null}">
-        <a class="btn btn-secondary m-1" href="/login">Login</a>
+        <a class="btn btn-secondary mr-2" href="/login">Login</a>
       </c:if>
       </li>
    		<li class="nav-item ">
       <c:if test="${userName == null}">
-        <a class="btn btn-secondary m-1" href="register">Register</a>
+        <a class="btn btn-secondary" href="/register">Register</a>
       </c:if>
       </li>
         <li class="nav-item">
